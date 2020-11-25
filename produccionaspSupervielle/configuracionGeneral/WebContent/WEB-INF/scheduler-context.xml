@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Este es el archivo de configuración de SPRING. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean class="com.dividato.configuracionGeneral.tasks.utils.Commons">
+        <property name="basePath" value="C:\Archivos_Procesos"/>
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+<!--                 <ref bean="reposicionScheduled" /> -->
+                <ref bean="lecturasScheduled" />
+<!--                 <ref bean="importacionScheduled" /> -->
+<!--                 <ref bean="importacionRefScheduled" /> -->
+             </list>
+        </property>
+        <property name="quartzProperties">
+            <props>
+                <prop key="org.quartz.scheduler.skipUpdateCheck">true</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!-- (+) REPOSICIONAMIENTO AUTOMATICO -->
+    <bean id="reposicionScheduled" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="iniciarReposicionScheduled" />
+        <property name="startDelay" value="3000" />
+        <property name="repeatInterval" value="3600000" /><!-- 60 minutos -->
+    </bean>
+    <bean id="iniciarReposicionScheduled" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="reposicionAutomatica" />
+        <property name="targetMethod" value="searchFiles" />
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="reposicionAutomatica" class="com.dividato.configuracionGeneral.tasks.ReposicionAutomatica">
+        <property name="clienteAspId" value="1"/>
+        <property name="username" value="admin@basa"/>
+        <property name="empresaId" value="20004"/>
+        <property name="sucursalId" value="30008"/>
+        <property name="lecturasPath" value="/reposicion/lecturas/in"/>
+        <property name="lecturasProcessed" value="/reposicion/lecturas/procesadas"/>
+        <property name="lecturasError" value="/reposicion/lecturas/error"/>        
+    </bean>
+    <!-- (+) REPOSICIONAMIENTO AUTOMATICO -->
+    
+      <!-- (+) IMPORT AUTOMATICO DE LECTURAS -->
+    <bean id="lecturasScheduled" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="iniciarLecturasScheduled" />
+        <property name="startDelay" value="3000" />
+        <property name="repeatInterval" value="3600000" /><!-- 60 minutos -->
+    </bean>
+    <bean id="iniciarLecturasScheduled" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="importLecturasAutomatica" />
+        <property name="targetMethod" value="searchFiles" />
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="importLecturasAutomatica" class="com.dividato.configuracionGeneral.tasks.ImportarLecturas">
+        <property name="clienteAspId" value="1"/>
+        <property name="username" value="admin@basa"/>
+        <property name="empresaId" value="20004"/>
+        <property name="sucursalId" value="30008"/>
+        <property name="lecturasPath" value="/importarLecturas/lecturas/in"/>
+        <property name="lecturasProcessed" value="/importarLecturas/lecturas/procesadas"/>
+        <property name="lecturasError" value="/importarLecturas/lecturas/error"/>        
+    </bean>
+    <!-- (-) IMPORT AUTOMATICO DE LECTURAS -->
+    
+    <!-- (+) IMPORTACION REARCHIVOS DIGITALES AUTOMATICO -->
+    <bean id="importacionScheduled" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="iniciarImportacionScheduled" />
+        <property name="startDelay" value="3000" />
+        <property name="repeatInterval" value="3600000" /><!-- 60 minutos -->
+    </bean>
+    <bean id="iniciarImportacionScheduled" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="importacionAutomatica" />
+        <property name="targetMethod" value="searchFiles" />
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="importacionAutomatica" class="com.dividato.configuracionGeneral.tasks.ImportarRearchivos">
+        <property name="clienteAspId" value="1"/>
+        <property name="username" value="admin@basa"/>
+        <property name="empresaId" value="20004"/>
+        <property name="sucursalId" value="30008"/>
+        <property name="lecturasPath" value="/importacionRearchivos/planillas/in"/>
+        <property name="lecturasProcessed" value="/importacionRearchivos/planillas/procesadas"/>
+        <property name="lecturasError" value="/importacionRearchivos/planillas/error"/>        
+    </bean>
+    <!-- (+) IMPORTACION REARCHIVOS DIGITALES AUTOMATICO -->
+    
+     <!-- (+) IMPORTACION REFERENCIAS AUTOMATICO -->
+    <bean id="importacionRefScheduled" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="iniciarImportacionRefScheduled" />
+        <property name="startDelay" value="3000" />
+        <property name="repeatInterval" value="3600000" /><!-- 60 minutos -->
+    </bean>
+    <bean id="iniciarImportacionRefScheduled" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="importacionRefAutomatica" />
+        <property name="targetMethod" value="searchFiles" />
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="importacionRefAutomatica" class="com.dividato.configuracionGeneral.tasks.ImportarReferencias">
+        <property name="clienteAspId" value="1"/>
+        <property name="username" value="admin@basa"/>
+        <property name="empresaId" value="20004"/>
+        <property name="sucursalId" value="30008"/>
+        <property name="lecturasPath" value="/importacionReferencias/planillas/nuevas"/>
+        <property name="lecturasProcessed" value="/importacionReferencias/planillas/procesadas"/>
+        <property name="lecturasError" value="/importacionReferencias/planillas/error"/>        
+    </bean>
+    <!-- (+) IMPORTACION REFERENCIAS AUTOMATICO -->
+
+</beans>

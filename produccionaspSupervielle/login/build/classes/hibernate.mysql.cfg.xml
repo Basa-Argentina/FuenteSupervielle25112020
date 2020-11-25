@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+	 	<property name="hibernate.connection.datasource">
+			java:/comp/env/jdbc/test
+		</property>
+		
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.MySQLDialect
+		</property>
+		
+		<property name="hibernate.connection.release_mode">
+			after_transaction
+		</property>
+		          
+		<property name="current_session_context_class">thread</property>		   
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		
+		<property name="show_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.query.substitutions">true=1, false=0</property>
+		  
+		<mapping class="com.security.modelo.seguridad.User"/>
+		<mapping class="com.security.modelo.seguridad.Group"/>
+		<mapping class="com.security.modelo.seguridad.Authority"/>
+		<mapping class="com.security.modelo.seguridad.UserLogin"/>
+		<mapping class="com.security.modelo.seguridad.ParameterBean"/>
+		<mapping class="com.security.modelo.seguridad.IpBlocked"/>
+		<mapping class="com.security.modelo.seguridad.PasswordHistory"/>
+		<mapping class="com.security.modelo.seguridad.AppLog"/>
+		
+		<mapping class="com.security.modelo.administracion.Cliente"/>
+		<mapping class="com.security.modelo.administracion.Licencia"/>
+		<mapping class="com.security.modelo.administracion.EstadoLicencia"/>
+		
+		<mapping class="com.security.modelo.general.Persona"/>
+		<mapping class="com.security.modelo.general.PersonaFisica"/>
+		<mapping class="com.security.modelo.general.PersonaJuridica"/>
+		<mapping class="com.security.modelo.general.TipoDocumento"/>
+		<mapping class="com.security.modelo.general.Pais"/>
+		<mapping class="com.security.modelo.general.Provincia"/>
+		<mapping class="com.security.modelo.general.Localidad"/>
+		<mapping class="com.security.modelo.general.Barrio"/>
+	      
+	</session-factory>
+</hibernate-configuration>
+

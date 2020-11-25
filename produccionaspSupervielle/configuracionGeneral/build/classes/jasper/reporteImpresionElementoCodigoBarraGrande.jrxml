@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteImpresionElementoCodigoBarraGrande" language="groovy" pageWidth="291" pageHeight="110" columnWidth="275" leftMargin="8" rightMargin="8" topMargin="4" bottomMargin="4" uuid="0c294657-6b49-4910-ba6c-455d7b728743">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[codigo]]></fieldDescription>
+	</field>
+	<field name="clienteEmp" class="java.lang.String">
+		<fieldDescription><![CDATA[clienteEmp.razonSocialONombreYApellido]]></fieldDescription>
+	</field>
+	<field name="codigoEtiqueta" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoEtiqueta]]></fieldDescription>
+	</field>
+	<field name="codigoEstante" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoEstante]]></fieldDescription>
+	</field>
+	<field name="empresaEtiqueta" class="java.lang.String">
+		<fieldDescription><![CDATA[empresaEtiqueta]]></fieldDescription>
+	</field>
+	<field name="clienteEmpEtiqueta" class="java.lang.String">
+		<fieldDescription><![CDATA[clienteEmpEtiqueta]]></fieldDescription>
+	</field>
+	<field name="nombreRazonSocial" class="java.lang.String">
+		<fieldDescription><![CDATA[clienteEmp.empresa.nombreRazonSocial]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoElemento.descripcion]]></fieldDescription>
+	</field>
+	<field name="posHorizontal" class="java.lang.Integer">
+		<fieldDescription><![CDATA[posicion.posHorizontal]]></fieldDescription>
+	</field>
+	<field name="posVertical" class="java.lang.Integer">
+		<fieldDescription><![CDATA[posicion.posVertical]]></fieldDescription>
+	</field>
+	<field name="orden" class="java.lang.Long">
+		<fieldDescription><![CDATA[orden]]></fieldDescription>
+	</field>
+	<field name="codigoLectura" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoLectura]]></fieldDescription>
+	</field>
+	<field name="lecturaOrden" class="java.lang.String">
+		<fieldDescription><![CDATA[lecturaOrden]]></fieldDescription>
+	</field>
+	<variable name="DigitoControl" class="java.lang.Integer"/>
+	<detail>
+		<band height="102" splitType="Immediate">
+			<textField>
+				<reportElement x="132" y="2" width="142" height="36" uuid="3abf9e1b-decb-44e5-8b46-71c9e5e051f2"/>
+				<textElement>
+					<font size="24" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigoEtiqueta}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement x="116" y="66" width="116" height="36" uuid="be7ac2bb-5f61-4413-92bf-148a0f88affc"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{posVertical}!=null ? "V : "+$F{posVertical}+" " : "" )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement x="198" y="66" width="76" height="36" uuid="d1f5b6b6-c7ed-40da-848a-0c34daf50858"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{posHorizontal}!=null ? "H : "+$F{posHorizontal}+" " : "" )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3" y="67" width="116" height="35" uuid="e03c860b-c8c2-463e-a845-41986f435256"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigoEstante}+" "]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="199" y="51" width="74" height="16" uuid="8bddfd76-66f6-4255-a389-7d07468e7ba7"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lecturaOrden}+" "]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement x="132" y="51" width="68" height="16" uuid="9a50e5ed-97e0-443f-a912-22da9a3d0526"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="SansSerif" size="12" isBold="false" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clienteEmpEtiqueta}+" "]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="0" y="1" width="178" height="75" uuid="e32d1cc0-c0f9-4961-9435-0af7e788aa8f"/>
+				<jr:EAN13 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="1.25" textPosition="bottom">
+					<jr:codeExpression><![CDATA[$F{codigo}]]></jr:codeExpression>
+				</jr:EAN13>
+			</componentElement>
+			<textField isBlankWhenNull="true">
+				<reportElement x="132" y="36" width="142" height="16" uuid="2ad43271-cbd2-4d4f-86d9-05550772533e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresaEtiqueta}+" "]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>	
+	
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%-5p] %d{yyyy/MM/dd HH:mm:ss} %C{1}.%M - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN"/>
+	        <param name="LevelMax" value="FATAL"/>
+	        <param name="AcceptOnMatch" value="true"/>
+		</filter>
+	</appender>
+	
+	<appender name="DEB_FILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="conf_deb.log"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%-5p] %d{yyyy/MM/dd HH:mm:ss} %C{1}.%M - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG"/>
+	        <param name="LevelMax" value="INFO"/>
+	        <param name="AcceptOnMatch" value="true"/>
+		</filter>
+	</appender>
+	
+	<appender name="ERR_FILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="conf_err.log"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%-5p] %d{yyyy/MM/dd HH:mm:ss} %C{1}.%M - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR"/>
+	        <param name="LevelMax" value="FATAL"/>
+	        <param name="AcceptOnMatch" value="true"/>
+		</filter>
+	</appender>
+	
+	<appender name="DB" class="com.dividato.configuracionGeneral.servicios.ConfiguracionGeneralLogListener">
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" />
+			<param name="LevelMax" value="FATAL" />
+		</filter>
+	</appender>
+	
+<!-- 	<root> -->
+<!-- 	  <appender-ref ref="DB"/> -->
+<!-- 	  <appender-ref ref="CONSOLE"/> -->
+<!--  	</root> -->
+	
+</log4j:configuration>

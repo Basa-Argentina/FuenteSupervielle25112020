@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Este es el archivo de configuración de SPRING. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">	
+		<property name="basenames">
+			<value>
+				i18n/generales,
+				i18n/index_menu,
+				i18n/errores,
+				i18n/notificaciones,
+				i18n/formularioEmpresa,
+				i18n/formularioDireccion,
+				i18n/formularioSucursal,
+				i18n/formularioSerie,
+				i18n/formularioImpuesto,
+				i18n/formularioConceptoFacturable,
+				i18n/formularioCai,
+				i18n/formularioDeposito,
+				i18n/formularioSeccion,
+				i18n/formularioGrupo,				
+				i18n/formularioEstante,
+				i18n/formularioListaPrecios,
+				i18n/formularioCliente,
+				i18n/formularioEmpleado,
+				i18n/formularioAgregarConcepto,
+				i18n/formularioClienteDireccion,
+				i18n/formularioClienteConcepto,
+				i18n/formularioTipoJerarquia,
+				i18n/formularioJerarquia,
+				i18n/formularioTipoRequerimiento,
+				i18n/formularioAgrupador,
+				i18n/formularioGrupoFacturacion,
+				i18n/formularioTipoElemento,
+				i18n/formularioStock,
+				i18n/formularioTipoOperacion,
+				i18n/formularioPosicion,
+				i18n/formularioElemento,
+				i18n/formularioTransporte,
+				i18n/formularioImpresionEtiquetaModulo,
+				i18n/formularioClasificacionDocumental,
+				i18n/formularioReferencia,
+				i18n/formularioExportacionReferencia,
+				i18n/formularioLectura,
+				i18n/formularioReposicionamiento,
+				i18n/formularioPosicionLibre,
+				i18n/formularioMovimiento,
+				i18n/formularioRequerimiento,
+				i18n/formularioRemito,
+				i18n/formularioRequerimientoElemento,
+				i18n/formularioComprobanteFactura,
+				i18n/formularioFactura,
+				i18n/formularioFacturaDetalle,
+				i18n/formularioRequerimientoElemento,
+				i18n/formularioOperacion,
+				i18n/formularioOperacionReferencia,
+				i18n/formularioRearchivo,
+				i18n/formularioLoteExportacionRearchivo,
+				i18n/formularioConceptoOperacionCliente,
+				i18n/formularioLoteFacturacion,
+				i18n/formularioHojaRuta,
+				i18n/formularioHojaRutaChequearOp,
+				i18n/formularioImportarDatos,
+				i18n/formularioPlantillaFacturacion,
+				i18n/formularioTransferenciaContenedores,
+				i18n/formularioPlantillaFacturacionDetalle,
+				i18n/formularioPreFactura,
+				i18n/formularioPreFacturaDetalle,
+				i18n/formularioLugares,
+				i18n/formularioReferenciaHistorico,
+				i18n/formularioElementoHistorico,
+				i18n/formularioCuentaCorriente,
+				i18n/formularioMedioCobro,
+				i18n/formularioComprobante,
+				i18n/formularioListaFacturaDocto,
+				i18n/formularioCambioEtiqueta,
+				i18n/consultaHistorialCambioEtiqueta,
+				i18n/formularioUnificarElementos
+				
+			</value>
+		</property>										
+	</bean>
+	
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+       <property name="cookieName" value="locale" />
+       <property name="cookieMaxAge" value="604800" />
+       <property name="defaultLocale" value="es" />
+    </bean>
+	
+</beans>

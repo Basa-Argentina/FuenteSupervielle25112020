@@ -1,0 +1,171 @@
+package com.security.modelo.configuraciongeneral;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.security.modelo.administracion.ClienteAsp;
+import com.security.modelo.seguridad.User;
+import com.security.recursos.Configuracion;
+/**
+ * 
+ * @author FedeMz
+ *
+ */
+@Entity
+@Table(name="lotereferencia")
+public class LoteReferencia {
+	private Long id;
+	private Long codigo;
+	private ClienteAsp clienteAsp;
+	private Empresa empresa;
+	private Sucursal sucursal;
+	private ClienteEmp clienteEmp;
+	private Date fechaRegistro;
+	private Boolean habilitado;
+	private List<Referencia> referencias;
+	private Boolean cargaPorRango;
+	private String nombreArchivoPlanilla;
+	private transient List<Referencia> modificadas;
+	private transient List<Referencia> eliminadas;
+	
+	private transient Boolean indiceIndividual=true;
+	private transient User usuario;
+	
+	
+	
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public Long getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+	
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name="cliente_asp_id")
+	public ClienteAsp getClienteAsp() {
+		return clienteAsp;
+	}
+	public void setClienteAsp(ClienteAsp clienteAsp) {
+		this.clienteAsp = clienteAsp;
+	}
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name="empresa_id")
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name="sucursal_id")
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
+	}
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name="cliente_emp_id")
+	public ClienteEmp getClienteEmp() {
+		return clienteEmp;
+	}
+	public void setClienteEmp(ClienteEmp clienteEmp) {
+		this.clienteEmp = clienteEmp;
+	}
+	@Column(name="fecha_registro")
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+	
+	@OneToMany(mappedBy="loteReferencia",fetch=FetchType.LAZY,cascade=CascadeType.ALL,orphanRemoval=true)
+	public List<Referencia> getReferencias() {
+		return referencias;
+	}
+	public void setReferencias(List<Referencia> referencias) {
+		this.referencias = referencias;
+	}
+	
+	@Transient
+	public String getFechaRegistroStr(){
+		if(fechaRegistro!=null)
+			return Configuracion.formatoFechaFormularios.format(fechaRegistro);
+		return "";
+	}
+	public void setFechaRegistroStr(String fecha){}
+	@Transient
+	public Boolean getIndiceIndividual() {
+		return indiceIndividual;
+	}
+	public void setIndiceIndividual(Boolean indiceIndividual) {
+		this.indiceIndividual = indiceIndividual;
+	}
+	
+	public Boolean getCargaPorRango() {
+		return cargaPorRango;
+	}
+	public void setCargaPorRango(Boolean cargaPorRango) {
+		this.cargaPorRango = cargaPorRango;
+	}
+	public Boolean getHabilitado() {
+		return habilitado;
+	}
+	public void setHabilitado(Boolean habilitado) {
+		this.habilitado = habilitado;
+	}
+	@Transient
+	public List<Referencia> getModificadas() {
+		return modificadas;
+	}
+	@Transient
+	public void setModificadas(List<Referencia> modificadas) {
+		this.modificadas = modificadas;
+	}
+	@Transient
+	public List<Referencia> getEliminadas() {
+		return eliminadas;
+	}
+	@Transient
+	public void setEliminadas(List<Referencia> eliminadas) {
+		this.eliminadas = eliminadas;
+	}
+	public String getNombreArchivoPlanilla() {
+		return nombreArchivoPlanilla;
+	}
+	public void setNombreArchivoPlanilla(String nombreArchivoPlanilla) {
+		this.nombreArchivoPlanilla = nombreArchivoPlanilla;
+	}
+	@Transient
+	public User getUsuario() {
+		return usuario;
+	}
+	@Transient
+	public void setUsuario(User usuario) {
+		this.usuario = usuario;
+	}
+	
+
+}

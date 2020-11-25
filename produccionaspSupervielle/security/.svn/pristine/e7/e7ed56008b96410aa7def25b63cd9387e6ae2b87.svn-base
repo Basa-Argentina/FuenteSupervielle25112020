@@ -1,0 +1,40 @@
+sort.amount=list
+
+basic.empty.showtable=true
+basic.show.header=true
+basic.msg.empty_list_row=<tr><td class="evenRowDisplayTag" align="center" colspan="{0}">No se encontraron items.</td></tr></tr>
+basic.msg.empty_list=<div></div>
+error.msg.invalid_page=pagina invalida
+
+paging.banner.item_name=item
+paging.banner.items_name=items
+
+paging.banner.no_items_found=<div></div>
+paging.banner.one_item_found=<div class="infoGrilla">Un {0} encontrado.</div>
+paging.banner.all_items_found=<div class="infoGrilla">{0} {1} encontrados, mostrando todos los {2}.</div>
+paging.banner.some_items_found=<div class="infoGrilla">{0} {1} encontrados, mostrando de {2} a {3}.</div><script> function submitLink(link) '{' href=link.href; var beforePage=href.substring(0, href.lastIndexOf("-p=")+3 ); var afterPage=href.substring(href.lastIndexOf("-p=")+3,link.href.length); var indexOfCuestion= afterPage.lastIndexOf("?"); if(indexOfCuestion==-1) afterPage=""; else afterPage=afterPage.substring(afterPage.lastIndexOf("?"),afterPage.length);link.href=beforePage+document.getElementById("gotoPage").value+afterPage;'}'</script>
+paging.banner.full=<div class="gotoPage" style="float: right;"><input type="text" name="gotoPage" id="gotoPage"  style="width:20px">/{6} <a href="{1}" title="ir" onclick="submitLink(this)">ir</a></div><div class="infoGrilla"><a href="{1}">&lt;&lt;</a> <a href="{2}">&lt;</a> {0} <a href="{3}">&gt;</a> <a href="{4}">&gt;&gt;</a></div>
+paging.banner.first=<div class="gotoPage" style="float: right;"><input type="text" name="gotoPage" id="gotoPage"  style="width:20px">/{6} <a href="{1}" title="ir" onclick="submitLink(this)">ir</a></div> <div class="infoGrilla">{0} <a href="{3}">&gt;</a> <a href="{4}">&gt;&gt;</a></div>
+paging.banner.last=<div class="gotoPage" style="float: right;"><input type="text" name="gotoPage" id="gotoPage"  style="width:20px">/{6} <a href="{1}" title="ir" onclick="submitLink(this)">ir</a></div><div class="infoGrilla"><a href="{1}">&lt;&lt;</a> <a href="{2}">&lt;</a> {0} </div>
+paging.banner.onepage=
+
+paging.banner.group_size=8
+
+paging.banner.page.selected=<strong>{0}</strong>
+paging.banner.page.link=<a href="{1}" title="Ir a la pagina {0}">{0}</a>
+paging.banner.page.separator=,
+paging.banner.placement=top
+
+css.table=tablaPrincipal
+css.tr.even=evenRowDisplayTag
+css.tr.odd=oddRowDisplayTag
+css.th.sorted=sorted
+css.th.ascending=order1
+css.th.descending=order2
+
+export.banner =<div class="exportlinks">Exportar a: {0}</div>
+export.pdf=true
+export.excel=true
+export.xml=false
+export.csv=false
+export.amount=list

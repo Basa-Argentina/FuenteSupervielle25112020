@@ -1,0 +1,539 @@
+package com.security.modelo.configuraciongeneral;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.security.modelo.administracion.ClienteAsp;
+/**
+ * 
+ * @author Federico Muñoz
+ *
+ */
+@Entity
+@Table(name="clasificacionDocumental")
+public class ClasificacionDocumental implements Comparable<ClasificacionDocumental> {
+	
+	private Long id;
+	private ClienteAsp clienteAsp;
+	private ClienteEmp clienteEmp;
+	private ClasificacionDocumental padre;
+	private Set<ClasificacionDocumental> nodosHijos;
+	
+	private Integer codigo;
+	private String nombre;
+	private String descripcion;
+	private String nodo; //tipo N (normal) o I (indice)
+	private Set<Empleado> empleadosClienteEmp;
+	//datos que se llenan cuando el nodo es tipo Indice
+	private Boolean indiceIndividual = false;
+	private Boolean indiceGrupal = false;
+	//individual
+	private Boolean individualNumero1Seleccionado = false;
+	private Boolean individualNumero1Requerido = false;
+	private Boolean individualNumero2Seleccionado = false;
+	private Boolean individualNumero2Requerido = false;
+	private Boolean individualFecha1Seleccionado = false;
+	private Boolean individualFecha1Requerido = false;
+	private Boolean individualFecha2Seleccionado = false;
+	private Boolean individualFecha2Requerido = false;
+	private Boolean individualTexto1Seleccionado = false;
+	private Boolean individualTexto1Requerido = false;
+	private Boolean individualTexto2Seleccionado = false;
+	private Boolean individualTexto2Requerido = false;
+	private String individualNumero1Titulo;
+	private String individualNumero2Titulo;
+	private String individualFecha1Titulo;
+	private String individualFecha2Titulo;
+	private String individualTexto1Titulo;
+	private String individualTexto2Titulo;
+	
+	//grupal
+	private Boolean grupalNumeroSeleccionado = false;
+	private Boolean grupalNumeroRequerido = false;
+	private Boolean grupalFechaSeleccionado = false;
+	private Boolean grupalFechaRequerido = false;
+	private Boolean grupalTextoSeleccionado = false;
+	private Boolean grupalTextoRequerido = false;
+	private String grupalNumero1Titulo;
+	private String grupalNumero2Titulo;
+	private String grupalFecha1Titulo;
+	private String grupalFecha2Titulo;
+	private String grupalTexto1Titulo;
+	private String grupalTexto2Titulo;
+	
+	//ambos
+	private Boolean descripcionSeleccionado = false;
+	private Boolean descripcionRequerido = false;
+	private String descripcionTitulo;
+	
+	private Long codigoBarraDesde;
+	private Long codigoBarraHasta;
+	private Boolean leeCodigoBarra;
+	
+
+	private transient Set<Empleado> empleadosParaEliminar;
+	private transient List<ClasificacionDocumental> listoNodosHijos;
+	
+	
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name="padre_id")
+	public ClasificacionDocumental getPadre() {
+		return padre;
+	}
+	public void setPadre(ClasificacionDocumental padre) {
+		this.padre = padre;
+	}
+	@OneToMany(
+			mappedBy="padre", 
+			fetch=FetchType.LAZY, 
+			cascade=CascadeType.ALL)
+	public Set<ClasificacionDocumental> getNodosHijos() {
+		return nodosHijos;
+	}
+	public void setListHijos(Set<ClasificacionDocumental> nodosHijos) {
+		this.nodosHijos = nodosHijos;
+	}
+	@Column(name = "nombre")
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = (nombre==null?null:nombre.trim());
+	}
+	@Column(name = "descripcion")
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = (descripcion==null?null:descripcion.trim());
+	}
+	@Column(name = "nodo")
+	public String getNodo() {
+		return nodo;
+	}
+	public void setNodo(String nodo) {
+		this.nodo = (nodo==null?null:nodo.trim().toUpperCase());
+	}
+	
+	@ManyToOne
+	@JoinColumn(name="cliente_asp_id")
+	public ClienteAsp getClienteAsp() {
+		return clienteAsp;
+	}
+	public void setClienteAsp(ClienteAsp clienteAsp) {
+		this.clienteAsp = clienteAsp;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name="cliente_emp_id")
+	public ClienteEmp getClienteEmp() {
+		return clienteEmp;
+	}
+	public void setClienteEmp(ClienteEmp clienteEmp) {
+		this.clienteEmp = clienteEmp;
+	}
+	@Column(name = "codigo")
+	public Integer getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(Integer codigo) {
+		this.codigo = (codigo==null?null:codigo);
+	}
+	@Column(name="indice_individual")
+	public Boolean getIndiceIndividual() {
+		return indiceIndividual;
+	}
+	public void setIndiceIndividual(Boolean indiceIndividual) {
+		this.indiceIndividual = indiceIndividual;
+	}
+	@Column(name="indice_grupal")
+	public Boolean getIndiceGrupal() {
+		return indiceGrupal;
+	}
+	public void setIndiceGrupal(Boolean indiceGrupal) {
+		this.indiceGrupal = indiceGrupal;
+	}
+	@Column(name="ind_numero1_seleccionado")
+	public Boolean getIndividualNumero1Seleccionado() {
+		return individualNumero1Seleccionado;
+	}
+	public void setIndividualNumero1Seleccionado(
+			Boolean individualNumero1Seleccionado) {
+		this.individualNumero1Seleccionado = individualNumero1Seleccionado;
+	}
+	@Column(name="ind_numero2_seleccionado")
+	public Boolean getIndividualNumero2Seleccionado() {
+		return individualNumero2Seleccionado;
+	}
+	public void setIndividualNumero2Seleccionado(
+			Boolean individualNumero2Seleccionado) {
+		this.individualNumero2Seleccionado = individualNumero2Seleccionado;
+	}
+	@Column(name="ind_fecha1_seleccionado")
+	public Boolean getIndividualFecha1Seleccionado() {
+		return individualFecha1Seleccionado;
+	}
+	public void setIndividualFecha1Seleccionado(Boolean individualFecha1Seleccionado) {
+		this.individualFecha1Seleccionado = individualFecha1Seleccionado;
+	}
+	@Column(name="ind_fecha2_seleccionado")
+	public Boolean getIndividualFecha2Seleccionado() {
+		return individualFecha2Seleccionado;
+	}
+	public void setIndividualFecha2Seleccionado(Boolean individualFecha2Seleccionado) {
+		this.individualFecha2Seleccionado = individualFecha2Seleccionado;
+	}
+	@Column(name="ind_texto1_seleccionado")
+	public Boolean getIndividualTexto1Seleccionado() {
+		return individualTexto1Seleccionado;
+	}
+	public void setIndividualTexto1Seleccionado(Boolean individualTexto1Seleccionado) {
+		this.individualTexto1Seleccionado = individualTexto1Seleccionado;
+	}
+	@Column(name="ind_texto2_seleccionado")
+	public Boolean getIndividualTexto2Seleccionado() {
+		return individualTexto2Seleccionado;
+	}
+	public void setIndividualTexto2Seleccionado(Boolean individualTexto2Seleccionado) {
+		this.individualTexto2Seleccionado = individualTexto2Seleccionado;
+	}
+	@Column(name="ind_numero1_titulo")
+	public String getIndividualNumero1Titulo() {
+		return individualNumero1Titulo;
+	}
+	public void setIndividualNumero1Titulo(String individualNumero1Titulo) {
+		this.individualNumero1Titulo = (individualNumero1Titulo==null?null:individualNumero1Titulo.trim());
+	}
+	@Column(name="ind_numero2_titulo")
+	public String getIndividualNumero2Titulo() {
+		return individualNumero2Titulo;
+	}
+	public void setIndividualNumero2Titulo(String individualNumero2Titulo) {
+		this.individualNumero2Titulo = (individualNumero2Titulo==null?null:individualNumero2Titulo.trim());
+	}
+	@Column(name="ind_fecha1_titulo")
+	public String getIndividualFecha1Titulo() {
+		return individualFecha1Titulo;
+	}
+	public void setIndividualFecha1Titulo(String individualFecha1Titulo) {
+		this.individualFecha1Titulo = (individualFecha1Titulo==null?null:individualFecha1Titulo.trim());
+	}
+	@Column(name="ind_fecha2_titulo")
+	public String getIndividualFecha2Titulo() {
+		return individualFecha2Titulo;
+	}
+	public void setIndividualFecha2Titulo(String individualFecha2Titulo) {
+		this.individualFecha2Titulo = (individualFecha2Titulo==null?null:individualFecha2Titulo.trim());
+	}
+	@Column(name="ind_texto1_titulo")
+	public String getIndividualTexto1Titulo() {
+		return individualTexto1Titulo;
+	}
+	public void setIndividualTexto1Titulo(String individualTexto1Titulo) {
+		this.individualTexto1Titulo = (individualTexto1Titulo==null?null:individualTexto1Titulo.trim());
+	}
+	@Column(name="ind_texto2_titulo")
+	public String getIndividualTexto2Titulo() {
+		return individualTexto2Titulo;
+	}
+	public void setIndividualTexto2Titulo(String individualTexto2Titulo) {
+		this.individualTexto2Titulo = (individualTexto2Titulo==null?null:individualTexto2Titulo.trim());
+	}
+	@Column(name="grp_numero_seleccionado")
+	public Boolean getGrupalNumeroSeleccionado() {
+		return grupalNumeroSeleccionado;
+	}
+	public void setGrupalNumeroSeleccionado(Boolean grupalNumeroSeleccionado) {
+		this.grupalNumeroSeleccionado = grupalNumeroSeleccionado;
+	}
+	@Column(name="grp_fecha_seleccionado")
+	public Boolean getGrupalFechaSeleccionado() {
+		return grupalFechaSeleccionado;
+	}
+	public void setGrupalFechaSeleccionado(Boolean grupalFechaSeleccionado) {
+		this.grupalFechaSeleccionado = grupalFechaSeleccionado;
+	}
+	@Column(name="grp_texto_seleccionado")
+	public Boolean getGrupalTextoSeleccionado() {
+		return grupalTextoSeleccionado;
+	}
+	public void setGrupalTextoSeleccionado(Boolean grupalTextoSeleccionado) {
+		this.grupalTextoSeleccionado = grupalTextoSeleccionado;
+	}
+	@Column(name="grp_numero1_titulo")
+	public String getGrupalNumero1Titulo() {
+		return grupalNumero1Titulo;
+	}
+	public void setGrupalNumero1Titulo(String grupalNumero1Titulo) {
+		this.grupalNumero1Titulo = (grupalNumero1Titulo==null?null:grupalNumero1Titulo.trim());
+	}
+	@Column(name="grp_numero2_titulo")
+	public String getGrupalNumero2Titulo() {
+		return grupalNumero2Titulo;
+	}
+	public void setGrupalNumero2Titulo(String grupalNumero2Titulo) {
+		this.grupalNumero2Titulo = (grupalNumero2Titulo==null?null:grupalNumero2Titulo.trim());
+	}
+	@Column(name="grp_fecha1_titulo")
+	public String getGrupalFecha1Titulo() {
+		return grupalFecha1Titulo;
+	}
+	public void setGrupalFecha1Titulo(String grupalFecha1Titulo) {
+		this.grupalFecha1Titulo = (grupalFecha1Titulo==null?null:grupalFecha1Titulo.trim());
+	}
+	@Column(name="grp_fecha2_titulo")
+	public String getGrupalFecha2Titulo() {
+		return grupalFecha2Titulo;
+	}
+	public void setGrupalFecha2Titulo(String grupalFecha2Titulo) {
+		this.grupalFecha2Titulo = (grupalFecha2Titulo==null?null:grupalFecha2Titulo.trim());
+	}
+	@Column(name="grp_texto1_titulo")
+	public String getGrupalTexto1Titulo() {
+		return grupalTexto1Titulo;
+	}
+	public void setGrupalTexto1Titulo(String grupalTexto1Titulo) {
+		this.grupalTexto1Titulo = (grupalTexto1Titulo==null?null:grupalTexto1Titulo.trim());
+	}
+	@Column(name="grp_texto2_titulo")
+	public String getGrupalTexto2Titulo() {
+		return grupalTexto2Titulo;
+	}
+	public void setGrupalTexto2Titulo(String grupalTexto2Titulo) {
+		this.grupalTexto2Titulo = (grupalTexto2Titulo==null?null:grupalTexto2Titulo.trim());
+	}
+	public void setNodosHijos(Set<ClasificacionDocumental> nodosHijos) {
+		this.nodosHijos = nodosHijos;
+	}
+	@ManyToMany(
+			targetEntity=Empleado.class,
+			cascade={CascadeType.PERSIST, CascadeType.MERGE},
+			fetch=FetchType.LAZY 
+	)
+	@JoinTable(
+			name="x_clasificacionDocumental_clienteEmpleados",
+			joinColumns=@JoinColumn(name="clasificacionDocumental_id",referencedColumnName="id"),
+			inverseJoinColumns=@JoinColumn(name="clienteEmpleados_id",referencedColumnName="id")
+	)
+	public Set<Empleado> getEmpleadosClienteEmp() {
+		return empleadosClienteEmp;
+	}
+	public void setEmpleadosClienteEmp(Set<Empleado> empleadosClienteEmp) {
+		this.empleadosClienteEmp = empleadosClienteEmp;
+	}
+	@Column(name="ind_numero1_requerido")
+	public Boolean getIndividualNumero1Requerido() {
+		return individualNumero1Requerido;
+	}
+	public void setIndividualNumero1Requerido(Boolean individualNumero1Requerido) {
+		this.individualNumero1Requerido = individualNumero1Requerido;
+	}
+	@Column(name="ind_numero2_requerido")
+	public Boolean getIndividualNumero2Requerido() {
+		return individualNumero2Requerido;
+	}
+	public void setIndividualNumero2Requerido(Boolean individualNumero2Requerido) {
+		this.individualNumero2Requerido = individualNumero2Requerido;
+	}
+	@Column(name="ind_fecha1_requerido")
+	public Boolean getIndividualFecha1Requerido() {
+		return individualFecha1Requerido;
+	}
+	public void setIndividualFecha1Requerido(Boolean individualFecha1Requerido) {
+		this.individualFecha1Requerido = individualFecha1Requerido;
+	}
+	@Column(name="ind_fecha2_requerido")
+	public Boolean getIndividualFecha2Requerido() {
+		return individualFecha2Requerido;
+	}
+	public void setIndividualFecha2Requerido(Boolean individualFecha2Requerido) {
+		this.individualFecha2Requerido = individualFecha2Requerido;
+	}
+	@Column(name="ind_texto1_requerido")
+	public Boolean getIndividualTexto1Requerido() {
+		return individualTexto1Requerido;
+	}
+	public void setIndividualTexto1Requerido(Boolean individualTexto1Requerido) {
+		this.individualTexto1Requerido = individualTexto1Requerido;
+	}
+	@Column(name="ind_texto2_requerido")
+	public Boolean getIndividualTexto2Requerido() {
+		return individualTexto2Requerido;
+	}
+	public void setIndividualTexto2Requerido(Boolean individualTexto2Requerido) {
+		this.individualTexto2Requerido = individualTexto2Requerido;
+	}
+	@Column(name="grp_numero_requerido")
+	public Boolean getGrupalNumeroRequerido() {
+		return grupalNumeroRequerido;
+	}
+	public void setGrupalNumeroRequerido(Boolean grupalNumeroRequerido) {
+		this.grupalNumeroRequerido = grupalNumeroRequerido;
+	}
+	@Column(name="grp_fecha_requerido")
+	public Boolean getGrupalFechaRequerido() {
+		return grupalFechaRequerido;
+	}
+	public void setGrupalFechaRequerido(Boolean grupalFechaRequerido) {
+		this.grupalFechaRequerido = grupalFechaRequerido;
+	}
+	@Column(name="grp_texto_requerido")
+	public Boolean getGrupalTextoRequerido() {
+		return grupalTextoRequerido;
+	}
+	public void setGrupalTextoRequerido(Boolean grupalTextoRequerido) {
+		this.grupalTextoRequerido = grupalTextoRequerido;
+	}
+	@Column(name="descripcion_seleccionado")
+	public Boolean getDescripcionSeleccionado() {
+		return descripcionSeleccionado;
+	}
+	public void setDescripcionSeleccionado(Boolean descripcionSeleccionado) {
+		this.descripcionSeleccionado = descripcionSeleccionado;
+	}
+	@Column(name="descripcion_requerido")
+	public Boolean getDescripcionRequerido() {
+		return descripcionRequerido;
+	}
+	public void setDescripcionRequerido(Boolean descripcionRequerido) {
+		this.descripcionRequerido = descripcionRequerido;
+	}
+	@Column(name="descripcion_titulo")
+	public String getDescripcionTitulo() {
+		return descripcionTitulo;
+	}
+	public void setDescripcionTitulo(String descripcionTitulo) {
+		this.descripcionTitulo = descripcionTitulo;
+	}
+	
+	@Transient
+	public List<ClasificacionDocumental> getListaHijosOrdenada(){
+		List<ClasificacionDocumental> coleccion = new ArrayList<ClasificacionDocumental>();
+		if(nodosHijos!=null){
+			coleccion.addAll(nodosHijos);
+			Collections.sort(coleccion,new Comparator<ClasificacionDocumental>() {
+				@Override
+				public int compare(ClasificacionDocumental o1,ClasificacionDocumental o2) {
+					if(o1.getCodigo()==null)return 1;
+					if(o2.getCodigo()==null)return -1;
+					return o1.getCodigo().compareTo(o2.getCodigo());
+				}
+			});
+		}
+		
+		return coleccion;
+	}
+	
+	@Transient
+	public Set<ClasificacionDocumental> getListaCompletaHijos(){
+		HashSet<ClasificacionDocumental> setResult = new HashSet<ClasificacionDocumental>(nodosHijos);
+		for(ClasificacionDocumental hijo: nodosHijos){
+			setResult.addAll(hijo.getListaCompletaHijos());
+		}
+		return setResult;
+	}
+
+	@Transient
+	public List<ClasificacionDocumental> getListaCarpetasPadre(){
+		List<ClasificacionDocumental> padres = new ArrayList<ClasificacionDocumental>();
+		ClasificacionDocumental carpetaPadre = this.getPadre(); 
+		while(carpetaPadre!=null){
+			padres.add(carpetaPadre);
+			carpetaPadre = carpetaPadre.getPadre();
+		}		
+		return padres;
+	}
+	@Transient
+	public Set<Empleado> getEmpleadosParaEliminar() {
+		return empleadosParaEliminar;
+	}
+	@Transient
+	public void setEmpleadosParaEliminar(Set<Empleado> empleadosParaEliminar) {
+		this.empleadosParaEliminar = empleadosParaEliminar;
+	}
+	public boolean tieneFechaRequerido() {
+		return individualFecha1Requerido!=null && individualFecha1Requerido ||
+				grupalFechaRequerido!=null && grupalFechaRequerido;
+	}
+	public boolean tieneNumeroRequerido() {
+		return individualNumero1Requerido!=null && individualNumero1Requerido ||
+			grupalNumeroRequerido!=null && grupalNumeroRequerido;
+	}
+	public boolean tieneTextoRequerido() {
+		return individualTexto1Requerido!=null && individualTexto1Requerido ||
+			grupalTextoRequerido!=null && grupalTextoRequerido;
+	}
+	public Long getCodigoBarraDesde() {
+		return codigoBarraDesde;
+	}
+	public void setCodigoBarraDesde(Long codigoBarraDesde) {
+		this.codigoBarraDesde = codigoBarraDesde;
+	}
+	public Long getCodigoBarraHasta() {
+		return codigoBarraHasta;
+	}
+	public void setCodigoBarraHasta(Long codigoBarraHasta) {
+		this.codigoBarraHasta = codigoBarraHasta;
+	}
+	public Boolean getLeeCodigoBarra() {
+		return leeCodigoBarra;
+	}
+	public void setLeeCodigoBarra(Boolean leeCodigoBarra) {
+		this.leeCodigoBarra = leeCodigoBarra;
+	}
+	@Transient
+	public String getNombreCompleto() {
+		String nombreCompleto = "";
+		if(padre!=null)
+			nombreCompleto=padre.getNombreCompleto();
+		nombreCompleto+=" ** "+getNombre();
+		return nombreCompleto;
+	}
+	
+	@Transient	
+	public List<ClasificacionDocumental> getListoNodosHijos() {
+		return listoNodosHijos;
+	}
+	@Transient
+	public void setListoNodosHijos(List<ClasificacionDocumental> listoNodosHijos) {
+		this.listoNodosHijos = listoNodosHijos;
+	}
+	@Override
+	public int compareTo(ClasificacionDocumental o) {
+		int cmp = this.codigo.compareTo(o.getCodigo());
+		if(cmp != 0) 
+			return cmp;
+			
+		cmp = this.nombre.compareTo(o.getNombre());
+		return cmp;
+	}
+	
+	
+}

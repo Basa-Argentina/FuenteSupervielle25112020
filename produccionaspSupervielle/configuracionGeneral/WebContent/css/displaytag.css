@@ -1,0 +1,127 @@
+.tablaPrincipal {
+	 font-style: normal;
+	 color: #000000;
+     background-color: #DDDDDD;
+     margin:auto;
+     width: 100%;
+}
+.infoGrilla{
+	color: #003090;
+	margin: auto;
+	width: 100%;
+	text-align: center;
+	font-size: small;
+}
+
+.evenRowDisplayTag{
+  background-color: #EFEFE0;
+  font-size: 11px;
+}
+
+.oddRowDisplayTag{
+  background-color: #FFFFF0;
+  font-size: 11px;
+}
+table thead th{
+	background-image:url('../images/header_table.png');
+	height: 35px;
+	padding:4px;
+	font-stretch: normal;
+	font-size: 12px;
+}
+table.a{
+	color:'#1584D6';
+}
+
+.tr_mouseover{
+	background-color:#C6C6B9;
+}
+
+.tr_rearchivo{
+	background-color: #C9D3E0
+}
+
+.tr_enRequerimiento{
+	background-color: #F1A6A6;
+}
+
+.tr_selected{
+	background-color:#5E93F5;
+}
+
+.tablaPrincipal th{
+	text-align: center;
+	color: #0060B0;
+}
+.tablaPrincipal th a{
+	color: #0060B0;
+}
+.tablaPrincipal th.sortable a {
+	background-image:url("../images/arrow_off.png");
+	background-repeat:no-repeat;
+}
+.tablaPrincipal th.sorted a, th.sortable a {
+	background-position:right center;
+	display:block;
+	width:100%;
+}
+.tablaPrincipal th.order1 a {
+	background-image:url("../images/arrow_down.png");
+}
+
+.tablaPrincipal th.order2 a {
+	background-image:url("../images/arrow_up.png");
+}
+
+
+.exportlinks
+{	
+	background-color:#EEEEEE;
+	border:1px dotted #999999;
+	width:90%;
+	text-align: center;
+	margin:auto;
+	margin-top:4px;
+}
+.exportlinks a{
+	text-decoration:none;
+	color: #0000FF;
+}
+.export {
+	padding:0 4px 1px 20px;
+	background-repeat:no-repeat;
+}
+.excel{
+	background-image:url('../images/ico_file_excel.png');
+}
+.pdf{
+	background-image:url('../images/ico_file_pdf.png');
+}
+
+.celdaAlineadoDerecha{
+    text-align: right;
+}
+
+.celdaAlineadoIzquierda{
+    text-align: left;
+}
+.celdaAlineadoCentrado{
+    text-align: center;
+}
+.celdaAlineadoIzquierdaGrande{
+    text-align: left;
+    width: auto;
+}
+.hidden{
+    display: none;
+}
+
+.saldoPositivo{
+	color: red;
+	font-size: small;	
+}
+
+.saldoNegativo{
+	color: green;
+	font-size: small;	
+}	

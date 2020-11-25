@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="security">
+        <wb-resource deploy-path="/" source-path="/WebContent"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/res"/>
+        <dependent-module archiveName="security-jar.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/security-jar/security-jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/security/build/classes"/>
+        <property name="context-root" value="security"/>
+    </wb-module>
+</project-modules>

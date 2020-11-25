@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteImpresionRemito_detalles" language="groovy" columnCount="4" pageWidth="360" pageHeight="28" orientation="Landscape" columnWidth="81" columnSpacing="11" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="2.593742460100003"/>
+	<property name="ireport.x" value="48"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="elemento" class="com.security.modelo.configuraciongeneral.Elemento">
+		<fieldDescription><![CDATA[elemento]]></fieldDescription>
+	</field>
+	<field name="codigo_1" class="java.lang.String">
+		<fieldDescription><![CDATA[elemento.codigo]]></fieldDescription>
+	</field>
+	<field name="referencia" class="java.lang.String">
+		<fieldDescription><![CDATA[referencia]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="3" y="4" width="12" height="12"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="17" y="2" width="343" height="18"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{codigo_1} +"  -  "+ ($F{referencia}.equals(null)?"":$F{referencia})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

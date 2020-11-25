@@ -1,0 +1,71 @@
+/*
+ * Copyright 2011 Dividato. All rights reserved
+ *
+ * Copyright Version 1.0
+ *
+ * Create on 21/06/2011
+ */
+package com.security.accesoDatos.configuraciongeneral.interfaz;
+
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import com.security.accesoDatos.interfaz.GeneralServiceInterface;
+import com.security.modelo.administracion.ClienteAsp;
+import com.security.modelo.configuraciongeneral.ClasificacionDocumental;
+import com.security.modelo.configuraciongeneral.ClienteEmp;
+import com.security.modelo.configuraciongeneral.Elemento;
+import com.security.modelo.configuraciongeneral.LoteReferencia;
+import com.security.modelo.configuraciongeneral.Referencia;
+
+/**
+ * @author Gabriel Mainero
+ *
+ */
+public interface ReferenciaService extends GeneralServiceInterface<Referencia>{
+
+	public Boolean verificarNodoYNodosHijosSinReferencias(ClasificacionDocumental nodo, ClienteAsp clienteAsp);
+	@SuppressWarnings("rawtypes")
+	public Integer contarElementoFiltradas(Long clienteAspId,Date fecha1, Date fecha2, Date fechaEntre,
+			Date fechaInicio, Date fechaFin,
+			Long numero1, Long numero2, Long numeroEntre, String numero1Texto,
+			String numero2Texto, String texto1, String texto2,
+			String descripcion, String codigosTipoElemento/*Long tipoElementoId*/, String elementoId,String codigoElemento,
+			Long clienteEmpId, String clasificaciones, Long seleccion, String listaIdElementosLecturaStr);
+	public Referencia obtenerParaRearchivo(ClienteEmp clienteEmp,
+			ClasificacionDocumental clasificacionDocumental, Long numero1);
+
+	public List listarDescripcionesPopup(Integer codigoClasificacionDocumental, String codigoCliente,String descripcion, ClienteAsp clienteAsp);
+	public List<Referencia> listarReferenciaPorLote(LoteReferencia loteReferencia,
+			ClienteAsp cliente);
+	public List<Map<String, Object>> listarPorClasificacionDocumental(ClasificacionDocumental clasificacion,List<Long> tiposElemento);
+	public List<Map<String, Object>> listarPorClasificacionDocumental(Collection<Long> idsClasificaciones, List<Long> tiposElemento);
+	List<Referencia> obtenerByElementoContenedor(Elemento contenedor);
+	public Referencia obtenerByElemento(Elemento elemento);
+	public List<Referencia> getListaByRangoElemento(Long idElementoDesde,
+			Long idElementoHasta);
+	public List<Referencia> listarReferenciasPorIds(List<Long> idReferencias);
+	public List<Referencia> traerReferenciasPorIdsPorSQL(String idReferencias);
+	public List<Object> traerObjectsPorIdsPorSQL(String idReferencias);
+	public Referencia obtenerByCodigoElemento(String codigoElemento);
+	public List<Referencia> getListaReferenciasByListaIDsElementos(
+			List<Long> listaIDsElementos);
+	public Referencia obtenerByIDElemento(Elemento elemento);
+	public Integer cantReferenciasExistenPorElementos(String idReferencias,Long idClienteAsp);
+	public Long obtenerCantidadByElementoContenedor(String codigoContenedor);
+	public List listarReferencias(Long clienteAspId, Date fecha1, Date fecha2,
+			Date fechaEntre, Date fechaInicio, Date fechaFin, Long numero1, Long numero2, Long numeroEntre,
+			String numero1Texto, String numero2Texto, String texto1,
+			String texto2, String descripcion, String codigosTipoElemento,
+			String codigoContenedor, String codigoElemento, Long clienteEmpId,
+			String clasificaciones, Long seleccion, String listaIdElementosLecturaStr, Integer numeroPagina,
+			Integer tamanioPagina, String fieldOrder, String sortOrder,
+			Boolean filtrarRefEnOperaciones, Integer cantExportar);
+	public List traerReferenciasPorLote(Long codigoLote);
+	public Integer contarLotesEstadoFiltrados(Long clienteAspId, Date fechaDesde,
+			Date fechaHasta, Long codigoLoteDesde, Long codigoLoteHasta,
+			String codigoContDesde, String codigoContDesde2, Boolean cerrado,
+			String clienteEmpId);
+}

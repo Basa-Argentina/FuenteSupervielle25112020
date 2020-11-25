@@ -1,0 +1,80 @@
+.darkClass
+{
+    background-color: #cccccc;
+    filter:alpha(opacity=70); /* IE */
+    opacity: 0.7; /* Safari, Opera */
+    -moz-opacity:0.7; /* FireFox */
+    text-align: center;	
+	vertical-align:middle;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+	width: 100%!important;
+	height: 150%!important;
+	display: none; 
+}
+
+.darkClassWithHeigth
+{
+    background-color: #cccccc;
+    filter:alpha(opacity=70); /* IE */
+    opacity: 0.7; /* Safari, Opera */
+    -moz-opacity:0.7; /* FireFox */
+    text-align: center;	
+	vertical-align:middle;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+	width: 100%!important;
+	height: 1200px;
+	display: none; 
+}
+
+.darkClassWithoutHeight
+{
+    background-color: #cccccc;
+    filter:alpha(opacity=70); /* IE */
+    opacity: 0.7; /* Safari, Opera */
+    -moz-opacity:0.7; /* FireFox */
+    text-align: center;	
+	vertical-align:middle;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+	width: 100%!important;
+	display: none; 
+}
+
+.darkClassWithoutHeightAndWidth
+{
+    background-color: #cccccc;
+    filter:alpha(opacity=70); /* IE */
+    opacity: 0.7; /* Safari, Opera */
+    -moz-opacity:0.7; /* FireFox */
+    text-align: center;	
+	vertical-align:middle;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+	display: none; 
+}
+
+.darkMiddleClass
+{
+	width: 600px;
+	top:200px;
+    background: white;
+    display: none;
+    position: absolute;
+}
+
+.darkMiddleClassFixed
+{
+	width: 600px;
+	max-width: 800px;
+	max-height: 600px;
+	top:50px;
+    background: white;
+    display: none;
+    position: absolute;
+}

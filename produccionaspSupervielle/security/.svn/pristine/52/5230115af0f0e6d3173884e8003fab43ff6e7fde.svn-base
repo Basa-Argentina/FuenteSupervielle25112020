@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Este es el archivo de configuración de SPRING. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">	
+		<property name="basenames">
+			<value>
+				i18n/generales,
+				i18n/index_menu,
+				i18n/errores,
+				i18n/notificaciones,
+				i18n/formularioUser,
+				i18n/formularioGroup,
+				i18n/formularioAuthority,
+				i18n/formularioParameterInsMod,
+				i18n/formularioInsModAppLog,
+				i18n/formularioCliente,
+				i18n/formularioLicencia
+			</value>
+		</property>										
+	</bean>
+	
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+       <property name="cookieName" value="locale" />
+       <property name="cookieMaxAge" value="604800" />
+       <property name="defaultLocale" value="es" />
+    </bean>
+	
+</beans>

@@ -1,0 +1,11 @@
+formularioAuthority.authority = Privilegio
+formularioAuthority.description = Descripción
+formularioAuthority.tituloConsulta=Administrar Privilegios
+formularioAuthority.tituloFormAgregar=Agregar Privilegio
+formularioAuthority.tituloFormModificar=Modificar Privilegio
+formularioAuthority.tituloFormConsultar=Consultar Privilegio
+formularioAuthority.accion=Acción
+formularioAuthority.errorClavePrimaria=El Privilegio ya Existe
+formularioAuthority.errorEliminacion=Imposible Eliminar, el Privilegio se Encuentra Asignado a Grupos de Usuarios
+## campos
+authority = Privilegio

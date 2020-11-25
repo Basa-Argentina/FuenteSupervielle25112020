@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>format</shortname>
+	<uri>http://www.costapag.org/tags/format</uri>
+
+
+
+	<tag>
+		<name>formatNumber</name>
+		<tagclass>com.security.recursos.NumberFormatTag</tagclass>
+		<bodycontent>none</bodycontent>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>tipoValor</name>
+			<required>false</required>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>numberComplete</name>
+		<tagclass>com.security.recursos.NumberCompleteTag</tagclass>
+		<bodycontent>none</bodycontent>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>length</name>
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>valorDefualt</name>
+			<required>false</required>
+		</attribute>
+	</tag>
+
+</taglib>
+
+
+

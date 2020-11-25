@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
+
+ 	<http lowercase-comparisons="false" 
+ 		   create-session="never" 
+ 		   session-fixation-protection="none"
+ 		   access-decision-manager-ref="accessDecisionManager"
+ 		   access-denied-page="/accesoDenegado.html"
+ 		   >
+	 	<port-mappings>
+			<port-mapping http="8080" https="8443"/>
+		</port-mappings>
+		
+ 		<intercept-url pattern="/css/*.css" filters="none"/>
+ 		<intercept-url pattern="/js/*.js" filters="none"/>
+ 		<intercept-url pattern="/images/*.jpg" filters="none"/>
+ 		<intercept-url pattern="/images/*.png" filters="none"/>
+ 		<intercept-url pattern="/images/*.gif" filters="none"/>
+ 		<intercept-url pattern="/flash/*.swf" filters="none"/>
+ 		
+ 		<intercept-url pattern="/" filters="none"/>
+ 		<intercept-url pattern="/index.jsp" filters="none"/>
+ 		
+ 		<intercept-url pattern="/error404.html" filters="none"/>
+ 		<intercept-url pattern="/error.html" filters="none"/>
+ 		<intercept-url pattern="/accesoDenegado.html" filters="none"/>
+ 		
+ 		<intercept-url pattern="/cambiarIdioma.html" 
+ 				access="ROLE_ANY_AUTHENTICATED,ROLE_ANONYMOUSE"/>
+ 		
+ 		<intercept-url pattern="/login.html" access="ROLE_ANY_AUTHENTICATED,ROLE_ANONYMOUSE"/>
+ 		<intercept-url pattern="/index.html" access="ROLE_ANY_AUTHENTICATED,ROLE_ANONYMOUSE"/>
+		<intercept-url pattern="/*RestorePassword.html" access="ROLE_ANY_AUTHENTICATED,ROLE_ANONYMOUSE"/>
+ 		<intercept-url pattern="/menu.html" access="ROLE_ANY_AUTHENTICATED"/>
+ 		 			    
+	    <intercept-url pattern="/*" access="ROLE_ANY_AUTHENTICATED"/>
+	     				
+	    <form-login login-page="/accesoDenegado.html" 
+	    		authentication-failure-url="/login.html?login_error=true"
+	    		always-use-default-target="true"
+	    		default-target-url="/menu.html"/>
+	    <logout logout-success-url="/index.html"/>
+	    <anonymous granted-authority="ROLE_ANONYMOUSE"/>
+	    
+    </http>
+    
+    <authentication-provider user-service-ref="userDetailsService">
+    	<password-encoder ref="passwordEncoder"/>
+    </authentication-provider>
+    
+    <beans:bean id="userDetailsService" class="com.security.servicios.UserDetailsService"/>
+	
+	<beans:bean id="saltSource" class="org.springframework.security.providers.dao.salt.ReflectionSaltSource">
+    	<beans:property name="userPropertyToUse" value="getUsername" />
+	</beans:bean>
+                
+    <beans:bean id="passwordEncoder" class="org.springframework.security.providers.encoding.ShaPasswordEncoder"/>
+    
+    <beans:bean id="accessDecisionManager" class="com.security.servicios.UnanimousBasedDecisionManager">
+    	<beans:property name="allowIfAllAbstainDecisions" value="true"/>
+		<beans:property name="decisionVoters">
+			<beans:list>
+				<beans:bean class="com.security.servicios.IpAddressVoter" />
+				<beans:bean class="org.springframework.security.vote.RoleVoter"/>
+			</beans:list>
+		</beans:property>	
+	</beans:bean>
+    
+</beans:beans>

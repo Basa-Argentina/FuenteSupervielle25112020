@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Este es el archivo de configuración de SPRING. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 
+		Este bean será el encargado de resolver las vistas.
+		Se ejecuta cuando el controlador retorna el nombre de la vista a mostrar.
+		Se le indica que debe buscar los JSP dentro de la carpeta /WEB-INF/jsp/
+		Este es el estándar para Spring. 
+	 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:viewClass="org.springframework.web.servlet.view.JstlView"
+		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" 
+	/>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+	<bean class="com.dividato.configuracionGeneral.controladores.FileUploadController">
+		<property name="formView" value="FileUploadForm" />
+		<property name="successView" value="FileUploadSuccess" />
+ 
+		<!-- Map a validator -->
+		<property name="validator">
+			<bean class="com.dividato.configuracionGeneral.validadores.FileUploadValidator" />
+		</property>
+	</bean>
+	
+	<!-- 
+		Este bean será el encargado de resolver las excepciones.
+		Se ejecuta cuando un controlador lanza una excepción.
+		Se le indica que debe mostrar la página de error (la cual también
+		es resuelta por el bean de vistas).
+	 -->	
+	<bean id="exceptionResolver" 
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	    <property name="defaultErrorView" value="error"/>    
+    </bean>	
+    
+    <!-- permite a SPRING manejar los webservices de JaxWS -->
+<!--    <bean id="wsExporter" class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">-->
+<!--		<property name="baseAddress" value="http://localhost:8080/ws/"/>-->
+<!--	</bean>-->
+    
+    <!-- Configuración de Spring a partir de anotaciones -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
+	<!-- 
+		Se le indica las clases que tiene que 'escanear'
+		para buscar controladores y componentes con anotaciones
+		y las clases sobre las que se hará inyección de componentes. 
+	-->
+	<bean class="com.security.servicios.MailManager"/>
+	<context:component-scan base-package="com.dividato.configuracionGeneral.i18n"/>
+	<context:component-scan base-package="com.dividato.configuracionGeneral.controladores"/>
+	<context:component-scan base-package="com.dividato.configuracionGeneral.controladores.jerarquias"/>
+	<context:component-scan base-package="com.dividato.configuracionGeneral.validadores"/>
+	<context:component-scan base-package="com.dividato.configuracionGeneral.validadores.jerarquias"/>
+	
+</beans>

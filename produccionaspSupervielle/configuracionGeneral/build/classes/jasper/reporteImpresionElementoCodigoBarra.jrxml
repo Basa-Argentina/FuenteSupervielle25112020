@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteImpresionElementoCodigoBarra" language="groovy" columnCount="2" pageWidth="272" pageHeight="62" columnWidth="122" columnSpacing="11" leftMargin="8" rightMargin="8" topMargin="4" bottomMargin="4">
+	<property name="ireport.zoom" value="2.357947691000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[codigo]]></fieldDescription>
+	</field>
+	<field name="digitoControlCodigoEAN13" class="java.lang.String">
+		<fieldDescription><![CDATA[digitoControlCodigoEAN13]]></fieldDescription>
+	</field>
+	<field name="codigoEtiqueta" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoEtiqueta]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="54" splitType="Immediate">
+			<componentElement>
+				<reportElement x="6" y="23" width="107" height="21"/>
+				<jr:EAN13 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="none">
+					<jr:codeExpression><![CDATA[$F{codigo}]]></jr:codeExpression>
+				</jr:EAN13>
+			</componentElement>
+			<textField>
+				<reportElement x="7" y="-4" width="107" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["NO REMOVER "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6" y="36" width="107" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{codigo}+$F{digitoControlCodigoEAN13}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5" y="5" width="112" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{codigoEtiqueta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

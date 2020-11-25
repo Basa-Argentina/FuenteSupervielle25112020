@@ -1,0 +1,33 @@
+form p { 
+	position: relative; 
+}
+form p label { 
+	position: absolute; 
+	top: 0; 
+	left: 0px;
+}
+
+form p br {
+	display: none;
+}
+
+
+form fieldset p input {
+	display: block;
+	padding: 4px;
+	margin: 0;
+	text-align: left;
+	width: 300px;
+}
+
+form fieldset p label {
+	display: block;
+	margin: 5px 5px 5px 6px;
+	padding: 0;
+	text-align: left;
+}
+
+form fieldset p label {
+	color: #777;
+}
+}

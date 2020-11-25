@@ -1,0 +1,152 @@
+HTML{
+	margin: auto;
+}
+
+BODY{
+	font-family:Trebuchet MS, Arial, Helvetica, sans-serif;
+	width: 1024px;
+	margin:auto;
+	background-image: url(../images/fondoH.JPG);
+	background-position: center;
+    background-repeat: repeat-y;     
+	font-size: 12px;
+}
+
+img{
+	border: none;
+}
+
+input{
+     height:14px;
+     padding-left:5px;
+     font-size: 11px;     
+}
+select{      
+	padding-left:5px;     	
+    font-size: 11px;
+}
+A{	
+	text-decoration: none;
+	font-size: 12px;
+}
+#contenedorGeneral{
+    background-color: #1584D6;
+    min-height:700px;
+	width:1034px;
+    margin:0px 5px 0px 5px ;
+    border-left:3px solid #1584D6;
+    border-right:3px solid #1584D6;         
+}
+
+.input_label_br{
+    float:left;
+	margin:5px;
+}
+.clear-both{
+        clear:both;
+}
+.header img{
+        border:5px solid #FFF;
+}
+.login{
+	float: right;
+}
+.contenedorInfoUser{
+     position:relative;
+}
+.userinfoconteiner{
+	 width: 800px;
+	 text-align: right;
+     height:25px;
+     position:absolute;
+	 padding-left:230px;
+	  margin-top: 8px;
+ }
+.infoUsuario{
+	color: #FFF;
+	font-size: 11px;
+}
+
+.contenido{
+	width: 1010px;
+	min-height: 500px;
+	padding-left: 20px;
+	float:right;
+	overflow: auto;
+	border-style: solid;
+	border-color: #FFF;
+	border-width: 0px 0px 0px 4px;
+	background-color: #FFFFFF;
+}
+
+/* tooltip styling. by default the element to be styled is .tooltip  */
+
+.tooltip {
+	display:none;
+	background:transparent url(../images/mavalos_tooltip/yellow_arrow_small.png);
+	font-size:11px;
+	height:25px;
+	width:75px;
+	padding:25px;
+	/*color:#fff;*/
+	color: #330099;	
+	font-weight: bold;
+	text-align: center;
+}
+
+.tooltip_mediano {
+	display:none;
+	background:transparent url(../images/mavalos_tooltip/yellow_arrow.png);
+	font-size:11px;
+	height:70px;
+	width:160px;
+	padding:25px;
+	/*color:#fff;*/
+	color: #330099;	
+	font-weight: bold;
+}
+
+.tituloForm{
+	color:#003090;
+}
+
+.footer{
+	color:#FFFFFF;
+}
+
+.headerDatos{	
+	width: 1034px;
+	height: 110px;
+	top:0px;
+	position:absolute;	
+	border-width: 0px;
+	border-style: solid;	
+	border-color: transparent;	
+	background: transparent;
+	z-index: 2;
+}
+.headerDatos div{
+	position: absolute; 
+	bottom: 0px;
+	right: 0px;
+	height: 110px;
+	padding-left: 20px;
+	border-left:5px solid #1584D6;
+}
+.headerDatos div table{
+	color: #003090;
+    font-size: 11px;
+	margin-top:10px;
+	margin-bottom:10px;
+	height: 90px;
+	margin-right:20px;
+}
+
+.tdNombre{
+	text-align: left;
+	font-weight: bold;	
+}
+
+.tdDato{
+	text-align: left;
+}

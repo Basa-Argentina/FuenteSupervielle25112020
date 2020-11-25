@@ -1,0 +1,116 @@
+package com.security.modelo.jerarquias;
+
+import static com.security.recursos.Configuracion.formatoFechaFormularios;
+
+import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.security.modelo.administracion.ClienteAsp;
+
+@Entity
+@Table(name="tipos_requerimiento")
+public class TipoRequerimiento implements Comparable<TipoRequerimiento>{
+	private Long id;
+	private String codigo;
+	private String descripcion;
+	private Integer plazo;
+	private ClienteAsp clienteAsp;
+	private Date fechaRegistro;
+	private Date fechaActualizacion;
+	private String modifico;
+	private transient String accion;
+	
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public Integer getPlazo() {
+		return plazo;
+	}
+	public void setPlazo(Integer plazo) {
+		this.plazo = plazo;
+	}	
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	public ClienteAsp getClienteAsp() {
+		return clienteAsp;
+	}
+	public void setClienteAsp(ClienteAsp clienteAsp) {
+		this.clienteAsp = clienteAsp;
+	}
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+	@Transient
+	public String getFechaRegistroStr() {
+		if(fechaRegistro==null)
+			return "";
+		return formatoFechaFormularios.format(fechaRegistro);
+	}
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+	public Date getFechaActualizacion() {
+		return fechaActualizacion;
+	}
+	@Transient
+	public String getFechaActualizacionStr() {
+		if(fechaActualizacion==null)
+			return "";
+		return formatoFechaFormularios.format(fechaActualizacion);
+	}
+	public void setFechaActualizacion(Date fechaActualizacion) {
+		this.fechaActualizacion = fechaActualizacion;
+	}	
+	public String getModifico() {
+		return modifico;
+	}
+	public void setModifico(String modifico) {
+		this.modifico = modifico;
+	}
+	@Transient
+	public String getAccion() {
+		return accion;
+	}
+	public void setAccion(String accion) {
+		this.accion = accion;
+	}
+	@Override
+	public int compareTo(TipoRequerimiento o) {
+		int cmp = getCodigo().compareTo(o.getCodigo());
+		if(cmp != 0) return cmp;
+		
+		cmp = getDescripcion().compareTo(o.getDescripcion());
+		if(cmp != 0) return cmp;
+
+		cmp = getPlazo().compareTo(o.getPlazo());
+		if(cmp != 0) return cmp;
+		
+		cmp = getId().compareTo(o.getId());
+		return cmp;		
+	}
+	
+	
+}	

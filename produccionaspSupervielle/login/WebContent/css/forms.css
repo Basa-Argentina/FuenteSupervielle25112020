@@ -1,0 +1,60 @@
+.botonCentrado{
+	width: 100px;
+	height: 22px;
+	font-size: 12px;
+}
+.busqueda{
+	background-color: #F1E87D;
+	align: auto;
+	font-size: small;
+	width: 100%;
+	vertical-align: middle;
+}
+.panelError{
+	background-color: #F2AEAE;
+	align: auto;
+	font-size: small;	
+	width: 100%;
+	vertical-align: middle;
+	text-align: left;
+	color: white;
+}
+.error{
+	color: red;
+	font-size: medium; 
+	text-align: left;
+}
+.requerido{
+	background-color:#D2E2F5;
+}
+.capitalizar{
+	text-transform: capitalize;	
+}
+.upperCase{
+	text-transform: uppercase;	
+}
+.lowerCase{
+	text-transform: lowercase;	
+}	
+.texto_td{
+	text-align: right;
+	font-size: 12px;
+}
+
+.texto_ti{
+	text-align: left;
+	font-size: 12px;
+	padding-left: 10px;
+}
+
+.texto_label{
+	text-align: left;
+	vertical-align: bottom;
+}
+.texto_field{
+	text-align: left;
+	vertical-align: top;
+}
+fieldset legend{
+	font-weight: bold;
+}

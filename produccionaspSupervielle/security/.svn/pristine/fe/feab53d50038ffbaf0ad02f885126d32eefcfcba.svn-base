@@ -1,0 +1,59 @@
+## PAGINA DE ERROR 
+error.accesoDenegado = Acceso Denegado
+error.404 = Recurso no Encontrado
+error.volver = Volver
+error.tryagain = El servidor no ha podido responder, por favor, inténtelo de nuevo en unos minutos.
+
+## ERRORES
+typeMismatch.java.util.Date=el campo debe ser una fecha válida: el formato es DD/MM/YYYY
+typeMismatch.java.lang.Long=el campo debe ser un numero entero
+typeMismatch.java.lang.Integer=el campo debe ser un numero entero
+typeMismatch.java.lang.Float=el campo debe ser un numero decimal
+typeMismatch.java.lang.Double=el campo debe ser un numero decimal
+required=el campo es requerido
+
+## BOTONES
+botones.read=Leer
+botones.agregar=Agregar
+botones.modificar=Modificar
+botones.eliminar=Eliminar
+botones.consultar=Consultar
+botones.guardar=Guardar
+botones.cancelar=Cancelar
+botones.restablecer=Restablecer
+botones.volver=Volver
+botones.insertar=Insertar
+botones.quitar=Quitar
+botones.enviar=Enviar
+botones.aceptar=Aceptar
+botones.cerrar=Cerrar
+botones.confirmar=Confirmar
+botones.exportar = Exportar
+## TEXTOS
+
+textos.requerido=* Requeridos
+textos.buscar=Buscar
+textos.borrar=Limpiar
+textos.datosCaracteristicos=Datos Característicos
+textos.si=Si
+textos.no=No
+textos.seleccion = Selección
+textos.abrirPanel = Abrir
+textos.cerrarPanel = Cerrar
+textos.validacion = Error
+textos.avisos = Avisos
+textos.warnings = Alerta
+textos.wait = Aguarde unos instantes por favor.
+textos.waitExtend= Su pedido se esta procesando.
+textos.menuDesplegable= Acción: Click Derecho 
+textos.moneda.peso=Peso
+textos.moneda.dolar=Dolar
+textos.moneda.todas=Todas
+textos.payments=Pagos
+
+## MENSAJES
+mensaje.eliminar= ¿Desea Eliminar el Registro?
+mensaje.errorNegativo=el campo debe ser positivo
+
+general.ambiente= (TEST)
+general.empresa= BASA

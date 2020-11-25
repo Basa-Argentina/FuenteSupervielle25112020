@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteImpresionModuloCodigoBarra" language="groovy" pageWidth="291" pageHeight="110" columnWidth="275" leftMargin="8" rightMargin="8" topMargin="4" bottomMargin="4">
+	<property name="ireport.zoom" value="2.483685292236626"/>
+	<property name="ireport.x" value="31"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="codigoModulo" class="java.lang.String">
+		<fieldDescription><![CDATA[codigo]]></fieldDescription>
+	</field>
+	<field name="codigoEstante" class="java.lang.String">
+		<fieldDescription><![CDATA[estante.codigo]]></fieldDescription>
+	</field>
+	<field name="codigoBarra" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoBarra]]></fieldDescription>
+	</field>
+	<field name="offsetHorizontal" class="java.lang.Integer">
+		<fieldDescription><![CDATA[offsetHorizontal]]></fieldDescription>
+	</field>
+	<field name="offsetVertical" class="java.lang.Integer">
+		<fieldDescription><![CDATA[offsetVertical]]></fieldDescription>
+	</field>
+	<field name="posHorizontal" class="java.lang.Integer">
+		<fieldDescription><![CDATA[posHorizontal]]></fieldDescription>
+	</field>
+	<field name="posVertical" class="java.lang.Integer">
+		<fieldDescription><![CDATA[posVertical]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="102" splitType="Immediate">
+			<textField>
+				<reportElement x="11" y="2" width="101" height="39"/>
+				<textElement>
+					<font size="31"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["E"+$F{codigoEstante} + " "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="2" width="113" height="40"/>
+				<textElement textAlignment="Right">
+					<font size="31"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["M("+$F{posVertical}+";"+$F{posHorizontal}+")"]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="11" y="42" width="251" height="57"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="EAN13" drawText="true" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{codigoBarra}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,139 @@
+package com.security.utils;
+
+public class Constantes {
+	//ROLES (tabla dbo.autority)
+	public static final String ROLE_ASP_ADMIN = "ROLE_ASP_ADMIN";
+	public static final String ROLE_MOD_CLIENTES = "ROLE_MOD_CLIENTES";
+	public static final String ROLE_MOD_CONFIGURACION = "ROLE_MOD_CONFIGURACION";
+	public static final String ROLE_MOD_DEPOSITOS = "ROLE_MOD_DEPOSITOS";
+	public static final String ROLE_EMP_OPE = "ROLE_EMP_OPE";
+	public static final String ROLE_MOD_REQUERIMIENTOS = "ROLE_MOD_REQUERIMIENTOS";
+	public static final String ROLE_MOD_SEGURIDAD = "ROLE_MOD_SEGURIDAD";
+	
+	//nombre usuario administrador por defecto
+	public static final String USER_ADMIN_DEFAULT = "admin@";
+	
+	//Posicion.estado
+	public static final String POSICION_ESTADO_ANULADO = "ANULADO";
+	public static final String POSICION_ESTADO_DISPONIBLE = "DISPONIBLE";
+	public static final String POSICION_ESTADO_OCUPADA = "OCUPADA";
+	public static final String POSICION_ESTADO_TEMPORALMENTE_ANULADA= "TEMPORALMENTE ANULADA";
+	
+	//HojaRuta.estado
+	public static final String ESTADO_HOJA_RUTA_PENDIENTE="Pendiente";
+	public static final String ESTADO_HOJA_RUTA_ENTREGADO="Entregado";
+	
+	//HojaRutaOperacionElemento.estado
+	public static final String ESTADO_HOJA_RUTA_OPERACION_ELEMENTO_NO_SELECCIONADO = "NoSeleccionado";
+	public static final String ESTADO_HOJA_RUTA_OPERACION_ELEMENTO_SELECCIONADO = "Seleccionado";
+	public static final String ESTADO_HOJA_RUTA_OPERACION_ELEMENTO_PROCESADO = "Procesado";
+	public static final String ESTADO_HOJA_RUTA_OPERACION_ELEMENTO_OMITIDO = "Omitido";
+	
+	//OperacionElemento.estado
+	public static final String ESTADO_OPERACION_ELEMENTO_PENDIENTE = "Pendiente";
+	public static final String ESTADO_OPERACION_ELEMENTO_EN_PROCESO = "En Proceso";
+	public static final String ESTADO_OPERACION_ELEMENTO_PROCESADO = "Procesado";
+	public static final String ESTADO_OPERACION_ELEMENTO_CANCELADO = "Cancelado";
+	public static final String ESTADO_OPERACION_ELEMENTO_OMITIDO = "Omitido";
+	
+	//Operacion.estado
+	public static final String ESTADO_OPERACION_PENDIENTE = "Pendiente";
+	public static final String ESTADO_OPERACION_EN_PROCESO = "En Proceso";
+	public static final String ESTADO_OPERACION_FINALIZADO_OK = "Finalizado OK";
+	public static final String ESTADO_OPERACION_FINALIZADO_ERROR = "Finalizado ERROR";
+	public static final String ESTADO_OPERACION_CANCELADO = "Cancelado";
+	
+	
+	//Elemento.estado
+	public static final String ELEMENTO_ESTADO_CREADO = "Creado";
+	public static final String ELEMENTO_ESTADO_EN_GUARDA = "En Guarda";
+	public static final String ELEMENTO_ESTADO_EN_TRANSITO = "En Transito";
+	public static final String ELEMENTO_ESTADO_EN_CONSULTA = "En Consulta";
+	public static final String ELEMENTO_ESTADO_EN_EL_CLIENTE = "En el Cliente";
+	public static final String ELEMENTO_ESTADO_UNIFICADO = "Unificado";
+	
+	//Elemento.tipoTrabajo
+	public static final String ELEMENTO_TIPO_TRABAJO_DIGITALIZACION = "Digitalización";
+	public static final String ELEMENTO_TIPO_TRABAJO_REFERENCIA_EN_PLANTA = "Referencia en planta";
+	public static final String ELEMENTO_TIPO_TRABAJO_REFERENCIA_ADM_POR_TERCEROS = "Referencia adm. por terceros";
+	public static final String ELEMENTO_TIPO_TRABAJO_REFERENCIADO_POR_TERCEROS = "Referenciado por terceros";
+	public static final String ELEMENTO_TIPO_TRABAJO_SIN_REFERENCIA = "Sin referencia";
+	public static final String ELEMENTO_TIPO_TRABAJO_NO_ESPECIFICADO = "No especificado";
+	
+	//Elemento.estadoTrabajo
+	public static final String ELEMENTO_ESTADO_TRABAJO_PENDIENTE = "Pendiente";
+	public static final String ELEMENTO_ESTADO_TRABAJO_PROCESADO = "Procesado";
+	
+	//Movimientos.tipoMovimiento
+	public static final String MOVIMIENTO_TIPO_MOVIMIENTO_INGRESO = "INGRESO";
+	public static final String MOVIMIENTO_TIPO_MOVIMIENTO_EGRESO = "EGRESO";
+	public static final String MOVIMIENTO_TIPO_MOVIMIENTO_TRANSFERENCIA = "TRANSFERENCIA";
+	
+	//TipoElemento.tipoEtiqueta
+	public static final String TIPO_ELEMENTO_TIPO_ETIQUETA_ETIQUETA_CHICA = "ETIQUETA CHICA";
+	public static final String TIPO_ELEMENTO_TIPO_ETIQUETA_ETIQUETA_MEDIA = "ETIQUETA MEDIA";
+	
+	//ClasificacionDocumental.nodo
+	public static final String CLASIFICACION_DOCUMENTAL_NODO_CARPETA = "N";
+	public static final String CLASIFICACION_DOCUMENTAL_NODO_INDICE = "I";
+	
+	//Remito.estado
+	public static final String REMITO_ESTADO_PENDIENTE = "Pendiente";
+	public static final String REMITO_ESTADO_EN_TRANSITO = "En Transito";
+	public static final String REMITO_ESTADO_CANCELADO = "Cancelado";
+	public static final String REMITO_ESTADO_ENTREGADO = "Entregado";
+
+	//Serie.tipoSerie
+	public static final String SERIE_TIPO_SERIE_FACTURA = "F";
+	public static final String SERIE_TIPO_SERIE_REMITO = "R";
+	public static final String SERIE_TIPO_SERIE_DOCUMENTO_INTERNO = "I";
+	public static final String SERIE_TIPO_SERIE_RECIBO = "X";
+	
+	//FACTURA Y FACTURADETALLE
+	public static final String FACTURA_ACCION_NUEVO = "NUEVO";
+	public static final String FACTURA_ACCION_MODIFICAR = "MODIFICACION";
+	public static final String FACTURA_ACCION_CONSULTAR = "CONSULTAR";
+	public static final String FACTURA_ACCION_ELIMINAR = "ELIMINAR";
+	
+	public static final String FACTURA_LETRA_COMPROBANTE_A = "A";
+	public static final String FACTURA_LETRA_COMPROBANTE_B = "B";
+	
+	//ERRORES DE REPOSICIONAMIENTO DE ELEMENTOS
+	public static final String ERROR_NUM_ELEMENTOS_NO_ES_MULTIPLO_POS_HOR = "formularioReposicionamiento.error.numElementosNoMultiploPosHor";
+	public static final String ERROR_LOS_ELEMENTOS_DE_LA_LECTURA_NO_SON_DEL_MISMO_TIPO = "formularioReposicionamiento.error.elementosTiposDiferentes";
+	public static final String ERROR_MODULO_NO_EXISTE = "formularioReposicionamiento.error.noExisteModuloDestino";
+	public static final String ERROR_TIPO_ELEMENTO_NO_EXISTE = "formularioReposicionamiento.error.noExisteTipoElemento";
+	public static final String ERROR_ALGUNOS_ELEMENTOS_NO_EXISTEN = "formularioReposicionamiento.error.algunosElementosNoExisten";
+	public static final String ERROR_EXISTEN_POSICIONES_OCUPADAS = "formularioReposicionamiento.error.existenPosicionesOcupadas";
+	public static final String ERROR_EXISTEN_POSICIONES_ANULADAS = "formularioReposicionamiento.error.existenPosicionesAnuladas";
+	public static final String ERROR_EL_GRUPO_DEL_MODULO_DESTINO_CONTIENE_UN_TIPO_ELEMENTO_DIFERENTE = "formularioReposicionamiento.error.grupoDelModuloDestinoDifiereTipoElemento";
+	public static final String ERROR_FALLA_REPOSICIONAMIENTO= "formularioReposicionamiento.error.falloDuranteReposicionamiento";
+	public static final String ERROR_NO_HAY_ELEMENTOS_PARA_REPOSICIONAR= "formularioReposicionamiento.error.noHayElementos";
+	public static final String ERROR_MODULO_DESTINO_ORIGEN_IGUALES = "formularioReposicionamiento.error.moduloOrigenDestinoIguales";
+	public static final String ERROR_CODIGO_LECTURA_INVALIDO = "formularioReposicionamiento.error.codigoLecturaInvalido";
+	public static final String ERROR_NO_EXISTE_LECTURA = "formularioReposicionamiento.error.noExisteLectura";
+	public static final String ERROR_ELEMENTOS_NO_POSICIONABLES_EN_LECTURA = "formularioReposicionamiento.error.elementosNoPosicionablesEnLectura";
+	public static final String ERROR_DEPOSITO_ACTUAL_DE_ELEMENTOS_DISTINTO_DEPOSITO_DESTINO = "formularioReposicionamiento.error.depositoActualDistintoDepositoDestino";
+	public static final String ERROR_POSICIONES_INSUFICIENTES_MODULO_DESTINO = "formularioReposicionamiento.error.posicionesInsuficientesModuloDestino";
+	public static final String EXITO_REPOSICIONAMIENTO_REALIZADO = "formularioReposicionamiento.exito.reposicionamientoRealizadoCorrectamente";
+	
+	
+	//URL's de Jaspers para impresion de etiquetas de elementos
+	public static final String REPORTE_ELEMENTO_ETIQUETA_MEDIA = "/reporteImpresionElementoCodigoBarraGrande.jrxml";
+	public static final String REPORTE_ELEMENTO_ETIQUETA_CHICA = "/reporteImpresionElementoCodigoBarra.jrxml";
+	
+	//URL's de Jasper para impresion de etiqueta de modulos
+	public static final String REPORTE_MODULO_ETIQUETA = "/reporteImpresionModuloCodigoBarra.jrxml";
+	
+	//URL's de Jasper para impresion de remito
+	public static final String REPORTE_REMITO = "/reporteImpresionRemitoChico.jrxml";
+	public static final String REPORTE_REMITO_DETALLE = "/reporteImpresionRemitoChico_detalles.jrxml";
+	
+	//URL's de Jasper para impresion de factura A
+	public static final String REPORTE_FACTURA_A = "/reporteImpresionFactura_A.jrxml";
+	public static final String REPORTE_FACTURA_A_DETALLE = "/reporteImpresionFactura_A_detalles.jrxml";
+	
+	//URL's de Jasper para impresion de factura B
+	public static final String REPORTE_FACTURA_B = "/reporteImpresionFactura_B.jrxml";
+	public static final String REPORTE_FACTURA_B_DETALLE = "/reporteImpresionFactura_B_detalles.jrxml";
+}

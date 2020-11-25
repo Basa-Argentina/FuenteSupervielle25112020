@@ -1,0 +1,26 @@
+formularioUser.username = Nombre de Usuario
+formularioUser.password = Contraseña
+formularioUser.confirmarPassword = Confirmar Contraseña
+formularioUser.enabled = Habilitado
+formularioUser.firstName = Nombre
+formularioUser.surName = Apellido
+formularioUser.eMail = Correo Electrónico
+formularioUser.tituloConsulta=Administrar Usuarios
+formularioUser.tituloFormAgregar=Agregar Usuario
+formularioUser.tituloFormModificar=Modificar Usuario
+formularioUser.tituloFormConsultar=Consultar Usuario
+formularioUser.accion=Acción
+formularioUser.asignacionGrupos=Asignación de Grupos
+formularioUser.gruposDisponibles=Disponibles
+formularioUser.gruposAsignados=Asignados
+formularioUser.habilitar = Habilitar
+formularioUser.deshabilitar = Deshabilitar
+formularioUser.adminUser = Administrador
+## campos
+username = Nombre de Usuario
+password = Contraseña
+confirmarContrasenia = Confirmar Contraseña
+persona.nombre = Nombre
+persona.apellido = Apellido
+persona.mail = Correo Electrónico
+assignedRoles = Grupos de Usuarios

@@ -1,0 +1,9 @@
+$(document).ready(function(){
+	$("#btnExportar").click(function(){
+		$("#accion").val("exportar");
+		$("#exportarLoteExportacionRearchivo").submit();
+	});
+	$("#btnVolver").click(function(){
+		document.location="consultaExportacionRearchivo.html";
+	});
+});

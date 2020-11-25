@@ -1,0 +1,29 @@
+##General
+
+## Grupos
+notif.group.grupoEliminado = Grupo de Usuarios Eliminado
+notif.group.grupoGuardado = Grupo de Usuarios Registrado/Actualizado
+notif.group.deleteAdminGroup = No es posible eliminar el grupo seleccionado (Grupo Especial)
+
+## Usuarios
+notif.user.eliminado = Usuario Eliminado
+notif.user.guardado = Usuario Registrado. Datos de inicio de sesión:\n
+notif.user.guardado.cliente = Empresa:
+notif.user.guardado.usuario = Usuario:
+notif.user.guardado.password = Contraseña:
+notif.user.modificado = Usuario Modificado.\n
+notif.user.disabledAdminUser = No es posible deshabilitar el usuario principal
+notif.user.deleteAdminUser = No es posible eliminar el usuario seleccionado.\nEl mismo es un "Usuario Administrador" o "Usuario de Personal"
+notif.user.deleteUser = Si elimina el Usuario seleccionado se eliminaran los \n registros de acceso al sistema de este Usuario.\n\u00BFDesea eliminar el Usuario seleccionado?
+
+## Clientes
+notif.clienteAsp.clienteRegistrado = Cliente registrado. Datos de inicio de sesión del Contacto:<br>
+notif.clienteAsp.clienteModificado = Cliente modificado
+notif.clienteAsp.clienteContacto = Empresa:
+notif.clienteAsp.usuarioContacto = Usuario:
+notif.clienteAsp.passwordContacto = Contraseña:
+
+## Licencias
+notif.licencia.registrada = Licencia registrada
+notif.licencia.modificada = Licencia modificada
+notif.licencia.eliminada = Licencia eliminada
