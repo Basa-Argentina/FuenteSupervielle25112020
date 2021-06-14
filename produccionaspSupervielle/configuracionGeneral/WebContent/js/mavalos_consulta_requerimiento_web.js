@@ -290,6 +290,7 @@ function getAjaxEmpleado(url, varName, elementName, callBack) {
 	request.send();
 }
 
+
 function abrirPopupSeleccionPersonalSolicitanteODireccion(url,inputValue,nombreClase, mensaje){
 	if(inputValue!=null){
 		if($("#"+inputValue).val()==null || $("#"+inputValue).val()==""){

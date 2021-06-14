@@ -2158,39 +2158,6 @@ public class ElementoServiceImp extends GestorHibernate<Elemento> implements Ele
 	}
 	
 	@Override
-	public String revisarNumReqSQL(Long id) {
-
-		Session session = null;
-
-		try {
-			session = getSession();
-
-			String consulta = "SELECT TOP (1) requerimiento.numero\n" + "FROM            x_operacion_elemento INNER JOIN\n"
-					+ "                         operacion ON x_operacion_elemento.operacion_id = operacion.id INNER JOIN\n"
-					+ "                         requerimiento ON operacion.requerimiento_id = requerimiento.id\n"
-					+ "WHERE        (x_operacion_elemento.elemento_id = :codigoElemento) AND (x_operacion_elemento.estado = 'Pendiente')";
-
-			SQLQuery q = session.createSQLQuery(consulta);
-			q.setLong("codigoElemento", id);
-
-			return q.uniqueResult().toString();
-
-		}
-
-		catch (HibernateException hibernateException) {
-			logger.error("No se pudo listar", hibernateException);
-			return null;
-
-		} finally {
-			try {
-				session.close();
-			} catch (Exception e) {
-				logger.error("No se pudo cerrar la sesión", e);
-			}
-		}
-	}
-	
-	@Override
 	public Integer contarElementosRetiroPorSQL(Elemento elemento,ClienteAsp clienteAsp,String clasificaciones){
 		Session session=null;
 		

@@ -4,7 +4,6 @@ import static com.security.recursos.Configuracion.formatoFechaFormularios;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -200,13 +199,17 @@ public class RequerimientoWebValidator implements Validator{
 			
 		}
 		else{
+			
 			if(requerimiento.getClienteCodigo() == null || "".equals(requerimiento.getClienteCodigo())){
 				errors.rejectValue("clienteCodigo", "required");
 				return;
 			}
 			
 			if(requerimiento.isInsertarElementoDirecto())
+				
+		
 			{
+				
 				if(requerimiento.getTipoRequerimientoCod() == null || "".equals(requerimiento.getClienteCodigo())){
 					errors.rejectValue("clienteCodigo", "required");
 					return;
@@ -216,61 +219,31 @@ public class RequerimientoWebValidator implements Validator{
 						requerimiento.getClienteCodigo(), requerimiento.getTipoRequerimientoCod());
 				
 				
-			if(elemento==null){
+				if(elemento==null){	
+				
 					errors.rejectValue("codigoElemento", "formularioRequerimiento.errorInsertarElemento");
-					return;
-				}
- 			try{
- 				String elemento1 = elementoService.revisarNumReqSQL(elemento.getId().longValue());
-				if (elemento1!=null){
-					errors.rejectValue("codigoElemento", "formularioRequerimiento.errorInsertarElementoPendiente" ,new String[]{elemento1},"");
-					return;
-				}
-			} catch(Exception e) {
-
-                 if (!elemento.getClienteEmp().getCodigo().equals(requerimiento.getClienteCodigo())){
-					errors.rejectValue("codigoElemento", "formularioRequerimiento.errorInsertarElementoCliente" );
 					return;
 					
 				}
-
-
-				 if(requerimiento.getTipoRequerimiento().getTipoMovimiento().equals("ingreso") && !elemento.getEstado().equalsIgnoreCase(Constantes.ELEMENTO_ESTADO_EN_EL_CLIENTE) &&
+				
+				
+				
+				else if(requerimiento.getTipoRequerimiento().getTipoMovimiento().equals("ingreso") && !elemento.getEstado().equalsIgnoreCase(Constantes.ELEMENTO_ESTADO_EN_EL_CLIENTE) && 
 						!elemento.getEstado().equalsIgnoreCase("En Consulta")){
 					errors.rejectValue("codigoElemento","formularioRequerimiento.errorInsertarElementoEstado",new String[]{elemento.getCodigo(),elemento.getEstado()},"");
 					return;
 				}
-				 if(requerimiento.getTipoRequerimiento().getTipoMovimiento().equals("egreso") && !elemento.getEstado().equalsIgnoreCase(Constantes.ELEMENTO_ESTADO_EN_GUARDA) &&
+				
+				else if(requerimiento.getTipoRequerimiento().getTipoMovimiento().equals("egreso") && !elemento.getEstado().equalsIgnoreCase(Constantes.ELEMENTO_ESTADO_EN_GUARDA) && 
 						!elemento.getEstado().equalsIgnoreCase("En Planta")){
 					errors.rejectValue("codigoElemento","formularioRequerimiento.errorInsertarElementoEstado",new String[]{elemento.getCodigo(),elemento.getEstado()},"");
 					return;
-				}}
- 		
-			if (requerimiento.getListaElementos()==null) {
-			
+				}
+				
 				requerimiento.setElemento(elemento);
-				
-			} else { 
-				String elementoActual = "1";
-				Iterator<RequerimientoReferencia> itr = requerimiento.getListaElementos().iterator();
-				
-				while(itr.hasNext()) {
-					RequerimientoReferencia elementoRef = (RequerimientoReferencia) itr.next();
-					elementoActual = elementoRef.getElemento().getTipoElemento().getId().toString();
-					break;
-			    }	
-				
-				if (elemento.getTipoElemento().getId().toString().equals(elementoActual)) {
-					requerimiento.setElemento(elemento);
-				}
-				else {
-					errors.rejectValue("codigoElemento", "formularioRequerimiento.errorInsertarDistinto");
-					return;
-				}
+			
 			}
-			
-			
-		}}
+		}
 	}
 	
 	
@@ -287,6 +260,7 @@ public class RequerimientoWebValidator implements Validator{
 	}
 	
 	private ClienteAsp obtenerClienteAspUser(){
+		
 		return obtenerUser().getCliente();
 	}
 	

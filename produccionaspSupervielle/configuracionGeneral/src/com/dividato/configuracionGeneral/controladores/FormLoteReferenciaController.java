@@ -354,7 +354,6 @@ public class FormLoteReferenciaController {
 			List<Referencia> referencias = referenciaService.listarReferenciaPorLote(loteReferencia, obtenerClienteAspUser());
 			loteReferencia.setReferencias(new ArrayList<Referencia>(referencias));
 			if(!loteReferencia.getReferencias().isEmpty())
-				
 			{
 				loteReferencia.setIndiceIndividual(false);
 				atributos.put("porRango", true);
@@ -936,6 +935,7 @@ public class FormLoteReferenciaController {
 	
 	
 	@RequestMapping(value="/refrescarFormReferencia.html",method=RequestMethod.POST)
+	
 	public String refrescarFormReferencia(Map<String,Object> atributos, HttpSession session,
 			@ModelAttribute(value="referenciaFormulario") Referencia referencia,
 			@RequestParam(value="obj_hash",required=false) String objectHash,

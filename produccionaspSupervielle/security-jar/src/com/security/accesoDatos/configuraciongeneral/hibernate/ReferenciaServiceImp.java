@@ -92,7 +92,7 @@ public class ReferenciaServiceImp extends GestorHibernate<Referencia> implements
     			Integer filaHasta = filaDesde + tamanioPagina;
     		}
 			
-			Integer top = 1500;
+			Integer top = 5000;
 			if(cantExportar!=null)
 				top = cantExportar;
 //			String order = "";

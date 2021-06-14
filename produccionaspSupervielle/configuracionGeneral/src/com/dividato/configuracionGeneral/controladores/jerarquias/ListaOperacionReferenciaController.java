@@ -92,7 +92,6 @@ import com.security.utils.ScreenMessageImp;
 @RequestMapping(
 		value=
 			{	
-					
 				"/iniciarOperacionReferencia.html",
 				"/mostrarOperacionReferencia.html",
 				"/filtrarOperacionReferencia.html",
@@ -101,7 +100,6 @@ import com.security.utils.ScreenMessageImp;
 				"/finalizarOperacionReferencia.html",
 				"/cancelarOperacionReferencia.html",
 				"/eliminarOperacionReferencia.html"
-				
 			}
 		)
 public class ListaOperacionReferenciaController {
@@ -642,7 +640,6 @@ public class ListaOperacionReferenciaController {
 				}
 					
 			}
-			
 			String[] seleccionados = requerimientoElementosSel.split(",");
 			for(String buscar:seleccionados){
 				Referencia referencia = referenciaService.obtenerPorId(new Long(buscar));
@@ -731,9 +728,7 @@ public class ListaOperacionReferenciaController {
 								//break;
 							}
 						}
-						
 						//Actualiza por seleccion
-						
 						if(seleccion != null && seleccion.length>0 && seleccionBusqueda.equals("porSeleccion")){
 							for(String idStr:seleccion){
 								Long id = null;

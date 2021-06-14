@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 190.3.12.83:8089  azul:1521 --><Context>
+
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+	<Resource name="jdbc/basa" auth="Container"
+		 type="javax.sql.DataSource" 
+		 driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+         url="jdbc:sqlserver://222.15.19.150:1433;DatabaseName=basa;SelectMethod=cursor;" 
+         username="sa"
+         password="Sicuyo123" 
+         removeAbandoned="true" 
+         removeAbandonedTimeout="900" 
+         logAbandoned="true"
+         maxActive="25" 
+         maxIdle="20" 
+         maxWait="-1"
+         validationQuery="select 1"
+	 testOnBorrow="true"/> 
+  
+</Context>

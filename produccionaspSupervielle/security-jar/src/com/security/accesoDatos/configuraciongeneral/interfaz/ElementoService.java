@@ -149,6 +149,5 @@ public interface ElementoService extends GeneralServiceInterface<Elemento>{
 	public Integer contarElementosRetiroPorSQL(Elemento elemento, ClienteAsp clienteAsp, String clasificaciones);
 	public Elemento buscarElementosParaRequerimientosPorSQL(String codigoElemento, String codigoClienteEmp,
 			String idTipoElemento);
-	public  String revisarNumReqSQL(Long id);
 	
 }

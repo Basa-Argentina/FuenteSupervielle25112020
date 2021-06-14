@@ -390,6 +390,7 @@ public class FormRequerimientoWebController {
 				&& !requerimientoFormulario.isBuscarElementoSinReferencia() 
 				&& !requerimientoFormulario.isInsertarElementoDirecto()){
 			//Si la validacion sale exitosa comienzo el proceso de registro en BD
+			
 			Requerimiento req;
 
 			if(!result.hasErrors()){	
@@ -406,26 +407,36 @@ public class FormRequerimientoWebController {
 					//Busco el ultimo numero de serie y le sumo uno
 					String numero = req.getSerie().getUltNroImpreso();
 					Long numeroLong = null;
+					
 					try {
 						numeroLong = Long.parseLong(numero);
 						numeroLong +=1;
 						req.setNumero(new BigInteger(numeroLong.toString()));
 						requerimientoFormulario.setNumero(new BigInteger(numeroLong.toString()));
 						req.getSerie().setUltNroImpreso(req.getNumeroStr());
-					} catch (NumberFormatException e) {
 						
+					}  catch (NumberFormatException e) {
+						
+										
 					}
+					
 					req.setListaElementos((HashSet<RequerimientoReferencia>) session.getAttribute("listaElementosRequerimientoFormulario"));
 					//Verifico que exista tipo de operaciones para el requerimiento seleccionado
+				
 					ArrayList<TipoOperacion> listaTipoOperaciones = (ArrayList<TipoOperacion>) tipoOperacionService.listarTipoOperacion(null, null, req.getTipoRequerimiento(), req.getClienteAsp());
+					
 					if(listaTipoOperaciones==null || listaTipoOperaciones.size()==0)
 						tipoOperacionExistente = new Boolean(false);
 					else
 						tipoOperacionExistente = new Boolean(true);
+					
 					//Se guarda el cliente en la BD
 					if(tipoOperacionExistente!=null && tipoOperacionExistente)
+						
 						commit = service.save(req, req.getSerie(),(HashSet<RequerimientoReferencia>) session.getAttribute("listaElementosRequerimientoFormulario"), crearOperaciones(req, listaTipoOperaciones));
+			
 				}else{
+					
 					req = service.obtenerPorId(requerimientoFormulario.getId());
 					Requerimiento requerimiento = service.obtenerPorId(req.getId());
 					if(requerimiento!=null){
